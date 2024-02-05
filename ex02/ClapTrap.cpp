@@ -17,6 +17,15 @@ ClapTrap::ClapTrap(std::string name)
     this->attackDamage = 0;
 }
 
+ClapTrap::ClapTrap(std::string name, unsigned int	hitPoints, unsigned int	energyPoints, unsigned int	attackDamage)
+{
+    std::cout << "ClapTrap full constructor called" << std::endl;
+    this->name = name;
+    this->hitPoints = hitPoints;
+    this->energyPoints = energyPoints;
+    this->attackDamage = attackDamage;
+}
+
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
     std::cout << "ClapTrap copy constructor called" << std::endl;
@@ -40,6 +49,11 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &copy)
 
 void ClapTrap::attack(std::string const &target)
 {
+    if (!(energyPoints > 0))
+    {
+        std::cout << "Not enough energy to attack\n";
+        return ;
+    }
     this->energyPoints -= 1;
     std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 }
@@ -52,6 +66,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
+    if (!(energyPoints > 0))
+    {
+        std::cout << "Not enough energy to repair\n";
+        return ;
+    }
     this->hitPoints += amount;
     this->energyPoints -= 1;
     std::cout << "ClapTrap " << this->name << " is repaired for " << amount << " points!" << std::endl;
@@ -77,23 +96,23 @@ unsigned int ClapTrap::getAttackDamage()
     return (this->attackDamage);
 }
 
-// void ClapTrap::setName(std::string name)
-// {
-//     this->name = name;
-// }
+void ClapTrap::setName(std::string name)
+{
+    this->name = name;
+}
 
-// void ClapTrap::setHitPoints(unsigned int hitPoints)
-// {
-//     this->hitPoints = hitPoints;
-// }
+void ClapTrap::setHitPoints(unsigned int hitPoints)
+{
+    this->hitPoints = hitPoints;
+}
 
-// void ClapTrap::setEnergyPoints(unsigned int energyPoints)
-// {
-//     this->energyPoints = energyPoints;
-// }
+void ClapTrap::setEnergyPoints(unsigned int energyPoints)
+{
+    this->energyPoints = energyPoints;
+}
 
-// void ClapTrap::setAttackDamage(unsigned int attackDamage)
-// {
-//     this->attackDamage = attackDamage;
-// }
+void ClapTrap::setAttackDamage(unsigned int attackDamage)
+{
+    this->attackDamage = attackDamage;
+}
 

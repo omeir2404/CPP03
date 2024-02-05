@@ -25,5 +25,17 @@ int main() {
     // Test the beRepaired() function
     clapTrap.beRepaired(20);
 
+    ClapTrap clap1;
+
+    ClapTrap clap2;
+
+    for (int i = 0; i < 11; i++)
+	{
+		clap1.attack(clap2.getName());
+		clap2.takeDamage(2);
+		clap2.beRepaired(1);		
+	}
+	clap1.beRepaired(1);
+
     return 0;
 }
